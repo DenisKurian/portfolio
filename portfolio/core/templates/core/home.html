@@ -30,43 +30,52 @@
 <!-- Projects Section -->
 <section id="projects" class="py-5 min-vh-100 container" data-aos="fade-up">
   <h2>Projects</h2>
-  <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="card">
+
+  <div class="glide position-relative my-5">
+
+  <!-- Track -->
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides">
+      {% for project in projects %}
+      <li class="glide__slide d-flex justify-content-center">
+        <div class="card shadow-sm w-100" style="max-width: 280px;">
+          {% if project.image %}
+          <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+          {% endif %}
           <div class="card-body">
-            <h5 class="card-title">Project One</h5>
-            <p class="card-text">Description of project one.</p>
-            <a href="#" class="btn btn-primary">Live Demo</a>
-            <a href="#" class="btn btn-outline-light">Source Code</a>
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+            {% if project.link %}
+            <a href="{{ project.link }}" class="btn btn-primary">View</a>
+            {% endif %}
           </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Project Two</h5>
-            <p class="card-text">Description of project two.</p>
-            <a href="#" class="btn btn-primary">Live Demo</a>
-            <a href="#" class="btn btn-outline-light">Source Code</a>
-          </div>
-        </div>
-      </div>
-      <!-- Add more carousel items here -->
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
+
+  <!-- Arrows -->
+  <div data-glide-el="controls">
+    <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+  </div>
+
+  <!-- Pagination Dots -->
+  <div class="glide__bullets text-center mt-4" data-glide-el="controls[nav]">
+    {% for project in projects %}
+    <button class="glide__bullet" data-glide-dir="={{ forloop.counter0 }}"></button>
+    {% endfor %}
+  </div>
+</div>
+
 </section>
+
 
 <!-- Contact Section -->
 <section id="contact" class="py-5 min-vh-100 container" data-aos="fade-up">
   <h2>Contact</h2>
-  <p>Email: your@email.com</p>
+  <p>Email: deniskuriandeepu@gmail.com</p>
 </section>
 
 {% endblock %}

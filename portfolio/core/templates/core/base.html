@@ -10,6 +10,9 @@
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <!-- Glidejs -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+
 
 
 </head>
@@ -27,7 +30,68 @@
     font-weight: bold;
     color: #0dcaf0 !important;
   }
+  .glide__bullet {
+  background-color: #adb5bd;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 4px;
+  opacity: 0.6;
+  border: none;
+  transition: all 0.3s;
+}
+.glide__bullet:hover,
+.glide__bullet:focus,
+.glide__bullet.glide__bullet--active {
+  background-color: #0dcaf0;
+  opacity: 1;
+  transform: scale(1.2);
+}
+  .glide__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 20px;
+  }
+  .glide__arrow--left {
+    left: -25px;
+  }
+  .glide__arrow--right {
+    right: -25px;
+  }
+
+  .glide__bullets {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .glide__bullet {
+    width: 12px;
+    height: 12px;
+    background-color: #999;
+    border-radius: 50%;
+    border: none;
+    transition: background-color 0.3s;
+  }
+
+  .glide__bullet:hover,
+  .glide__bullet.glide__bullet--active {
+    background-color: #0dcaf0;
+  }
+
+
+
 </style>
+
+<!-- glidejs -->
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+
 <body class="bg-body text-body" data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="100" tabindex="0">
 
 
@@ -86,6 +150,23 @@
     themeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
   });
 </script>
+<!-- Glide.js -->
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<script>
+  new Glide('.glide', {
+    type: 'carousel',
+    perView: 3,
+    focusAt: 'center',
+    gap: 16,
+    breakpoints: {
+      992: { perView: 2 },
+      768: { perView: 1 }
+    }
+  }).mount();
+</script>
+
+
+
 
 </body>
 </html>

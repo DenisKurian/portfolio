@@ -11,11 +11,21 @@ class ProjectListView(ListView):
 
 class HomeView(TemplateView):
     template_name = "core/home.html"
-    context_object_name = 'projects'
+    
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        all_projects = Project.objects.all()
+
+        # Group projects into chunks of 3
+        def chunks(lst, n):
+            for i in range(0, len(lst), n):
+                yield lst[i:i + n]
+
+        context['project_chunks'] = list(chunks(all_projects, 3))
         context['MEDIA_URL'] =settings.MEDIA_URL
+        context['projects'] = Project.objects.all()
         return context
 
 class AboutView(TemplateView):
