@@ -1,8 +1,71 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic import ListView
-from .models import Project
+from .models import Project, Certificates, Skills
 from django.conf import settings
+
+emoji_map = {
+    "AWS": "☁️",
+    "Android": "🤖",
+    "Arch Linux": "🎯",
+    "BeautifulSoup": "🍜",
+    "Blender": "🧡",
+    "Bootstrap": "📦",
+    "C": "🔵",
+    "C#": "🎼",
+    "C++": "➕",
+    "CSS": "🎨",
+    "Django": "🌿",
+    "Docker": "🐳",
+    "Excel": "📊",
+    "FastAPI": "⚡",
+    "Figma": "🎨",
+    "Firebase": "🔥",
+    "Flutter": "💙",
+    "Git": "🔧",
+    "GitHub": "🐙",
+    "GraphQL": "🕸️",
+    "HTML": "📄",
+    "Illustrator": "✒️",
+    "Java": "☕",
+    "JavaScript": "✨",
+    "Jira": "📋",
+    "Keras": "🔬",
+    "Linux": "🐧",
+    "Matplotlib": "📈",
+    "MongoDB": "🍃",
+    "MySQL": "🐬",
+    "Nginx": "🧭",
+    "Node.js": "🌲",
+    "Notion": "📓",
+    "NumPy": "📐",
+    "OpenCV": "👁️",
+    "Pandas": "🐼",
+    "Photoshop": "🖌️",
+    "PostgreSQL": "🐘",
+    "Postman": "📮",
+    "PowerPoint": "📽️",
+    "PyTorch": "🔥",
+    "Python": "🐍",
+    "REST API": "🔗",
+    "React": "⚛️",
+    "Regex": "🔍",
+    "SQL": "🗄️",
+    "SQLite": "📘",
+    "Scikit-learn": "📊",
+    "Selenium": "🧪",
+    "Shell": "💻",
+    "Slack": "💬",
+    "Streamlit": "🧵",
+    "Tailwind": "🌬️",
+    "TensorFlow": "🧠",
+    "Trello": "🗂️",
+    "TypeScript": "🌀",
+    "Ubuntu": "🟠",
+    "Unity": "🎮",
+    "VS Code": "📝",
+    "iOS": "📱"
+}
 
 class ProjectListView(ListView):
     model = Project
@@ -26,6 +89,9 @@ class HomeView(TemplateView):
         context['project_chunks'] = list(chunks(all_projects, 3))
         context['MEDIA_URL'] =settings.MEDIA_URL
         context['projects'] = Project.objects.all()
+        context['certificates'] = Certificates.objects.all()
+        context['skills'] = Skills.objects.all()
+        context['emoji_map'] = emoji_map
         return context
 
 class AboutView(TemplateView):

@@ -1,6 +1,8 @@
 {% extends "core/base.html" %}
 {% block title %}Home - Portfolio{% endblock %}
 {% load static %}
+
+{% load custom_filters %}
 {% block content %}
 
 <!-- Hero Section -->
@@ -24,7 +26,15 @@
 <!-- Skills Section -->
 <section id="skills" class="py-5 min-vh-100 container" data-aos="fade-up">
   <h2>Skills</h2>
-  <p>List of programming languages and tools.</p>
+  <div class="row">
+    {% for skill in skills %}
+      <div class="col-6 col-md-4 mb-3">
+        <div class="card shadow-sm p-3 h-100 text-center" data-aos="fade-up">
+          <h5 class="card-title">{{ emoji_map|get_item:skill.title|default:"" }} {{ skill.title }}</h5>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 </section>
 
 <!-- Projects Section -->
@@ -47,7 +57,14 @@
             <p class="card-text">{{ project.description|truncatewords:20 }}</p>
             {% if project.link %}
             <a href="{{ project.link }}" class="btn btn-primary">View</a>
+            {% endif %}<div class="mt-auto">
+            {% if project.live_demo_url %}
+            <a href="{{ project.live_demo_url }}" target="_blank" class="btn btn-primary btn-sm">Live Demo</a>
             {% endif %}
+            {% if project.source_code_url %}
+            <a href="{{ project.source_code_url }}" target="_blank" class="btn btn-outline-secondary btn-sm">Source Code</a>
+            {% endif %}
+          </div>
           </div>
         </div>
       </li>
@@ -69,6 +86,42 @@
   </div>
 </div>
 
+</section>
+
+<!--Certificates-->
+<section id="certificates" class="py-5 min-vh-100 container" data-aos="fade-up">
+  <h1 class="mb-4 text-center">Certificates</h1>
+  <div class="glide" id="certificatesCarousel">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        {% for cerf in certificates %}
+        <li class="glide__slide">
+          <div class="card h-100" data-aos="zoom-in">
+            {% if cerf.file %}
+              {% if cerf.file|is_pdf %}
+                <img src="{{ cerf.thumbnail.name }}" class="card-img-top" alt="{{ cerf.title }}">
+              {% with thumbnail_url=cerf.get_or_generate_thumbnail %}
+              {% if thumbnail_url %}
+                <img src="{{ thumbnail_url }}" class="card-img-top" alt="{{ cerf.title }}">
+              {% endif %}
+            {% endwith %}
+            {% else %}
+              <img src="{{ cerf.file.url }}" class="card-img-top" alt="{{ cerf.title }}">
+            {% endif %}
+            {% endif %}
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ cerf.title }}</h5>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">‹</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">›</button>
+    </div>
+  </div>
 </section>
 
 

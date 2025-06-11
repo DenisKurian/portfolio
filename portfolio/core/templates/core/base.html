@@ -16,6 +16,68 @@
 
 
 </head>
+<style>
+  @media (max-width: 768px) {
+  main {
+    padding-top: 180px;
+  }
+}
+
+  /* Adjust for fixed navbar 
+  main {
+    padding-top: 80px;
+  }
+*/
+  section {
+    scroll-margin-top: 170px;
+  }
+
+  .glide__slide {
+    padding: 0;
+    margin: 0;
+  }
+
+  .glide__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    font-size: 24px;
+  }
+
+  .glide__arrow--left {
+    left: -24px;
+  }
+
+  .glide__arrow--right {
+    right: -24px;
+  }
+
+  .glide__bullets {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 8px;
+  }
+
+  .glide__bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .glide__bullet.glide__bullet--active {
+    background-color: #0dcaf0;
+  }
+</style>
 
 <style>
     html {
@@ -30,6 +92,16 @@
     font-weight: bold;
     color: #0dcaf0 !important;
   }
+  .glide__slide {
+  overflow: visible;
+  padding: 10px;
+
+  }
+
+  .glide__slides {
+    overflow: visible;
+  }
+
   .glide__bullet {
   background-color: #adb5bd;
   width: 8px;
@@ -84,7 +156,13 @@
   .glide__bullet.glide__bullet--active {
     background-color: #0dcaf0;
   }
-
+  
+  .card:hover{
+    transform:scale(1.05);
+    z-index: 10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
 
 
 </style>
@@ -113,6 +191,7 @@
             <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
             <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
             <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             <li class="nav-item">
             <button id="themeToggle" class="btn btn-outline-secondary btn-sm ms-2">🌙</button>
@@ -155,9 +234,11 @@
 <script>
   new Glide('.glide', {
     type: 'carousel',
-    perView: 3,
+    perView: 4,
     focusAt: 'center',
-    gap: 16,
+    gap: 0,
+    autoplay: 3000, // 3 seconds
+    hoverpause: true,
     breakpoints: {
       992: { perView: 2 },
       768: { perView: 1 }
