@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" id="htmlTag">
 
@@ -9,14 +10,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Glidejs -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
+  
 
 
 </head>
 <style>
+  
+lottie-player {
+  position: fixed !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
   @media (max-width: 768px) {
   main {
     padding-top: 180px;
@@ -163,6 +178,238 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
+#resume iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.resume-viewer {
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  transition: box-shadow 0.3s ease;
+}
+
+.resume-viewer:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.resume-glass {
+  max-width: 900px;
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.resume-glass:hover {
+  transform: scale(1.01);
+}
+
+.btn-outline-light {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  border: 1px solid #fff;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: #fff;
+  color: #000;
+}
+.resume-download-btn {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.resume-download-btn:hover {
+  background: black;
+  color: #fff;
+  text-decoration: none;
+}
+.glass-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 50px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .glass-section {
+  background: rgba(0, 0, 0, 0.2);
+  color: #f1f1f1;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.timeline-item {
+  border-left: 4px solid #00bcd4;
+  padding-left: 20px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 16px;
+  height: 16px;
+  background-color: #00bcd4;
+  border-radius: 50%;
+}
+
+.timeline-item h4 {
+  margin: 0 0 5px;
+}
+
+.timeline-item .location,
+.timeline-item .time {
+  font-size: 0.9rem;
+  display: block;
+  opacity: 0.8;
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.contact-box a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact-box a:hover {
+  text-decoration: underline;
+}
+
+body.dark-mode .contact-box a {
+  color: #4db8ff;
+}
+
+/* CONTACT SECTION STYLING */
+/* Glassmorphism Contact Section */
+/* Contact Section Glassmorphism */
+.contact-box {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+[data-bs-theme="dark"] .contact-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Text & Link Styling */
+#contact .list-group-item {
+  background: transparent;
+  color: var(--bs-body-color);
+  border: none;
+}
+
+#contact a {
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+
+#contact a:hover {
+  text-decoration: underline;
+  color: var(--bs-primary);
+}
+
+/* Social Icons Styling */
+#contact .bi {
+  transition: transform 0.2s ease;
+  color: var(--bs-body-color);
+}
+
+#contact .bi:hover {
+  transform: scale(1.2);
+  color: var(--bs-primary);
+}
+
+
+body {
+  background-color: #f5f5f5;
+  color: #222;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* SVG Background */
+
+/* Glassmorphism card */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+body.dark-mode .card {
+  background: rgba(18, 18, 18, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons */
+.btn {
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentColor;
+  transition: all 0.3s;
+}
+.btn:hover {
+  background-color: currentColor;
+  color: #fff;
+}
+
+
+/* #bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  object-fit: cover;
+  pointer-events: none;
+} */
 
 
 </style>
@@ -171,13 +418,31 @@
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 
 <body class="bg-body text-body" data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="100" tabindex="0">
-
+<lottie-player
+ 
+  src="{% static 'bg4.json' %}"
+  background="transparent"
+  speed="1"
+  loop
+  autoplay
+  style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    object-fit: cover;
+  ">
+</lottie-player>
 
 <!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
 </script>
+
 
 <!-- Navbar -->
 <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark bg-dark px-3 fixed-top">
@@ -189,7 +454,9 @@
     <div class="collapse navbar-collapse" id="navLinks" >
         <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
             <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+            <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
             <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
             <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -229,6 +496,8 @@
     themeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
   });
 </script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 <!-- Glide.js -->
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 <script>
@@ -244,7 +513,24 @@
       768: { perView: 1 }
     }
   }).mount();
+
+  new Glide('#certificatesCarousel', {
+  type: 'carousel',
+  perView: 3,
+  focusAt: 'center',
+  gap: 20,
+  autoplay: 3000,
+  hoverpause: true,
+  breakpoints: {
+    992: { perView: 2 },
+    576: { perView: 1 }
+  }
+}).mount();
+
 </script>
+
+
+
 
 
 

@@ -1,9 +1,17 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic import ListView
-from .models import Project, Certificates, Skills
+from .models import Project, Certificates, Skills, Resume
 from django.conf import settings
+from django.http import FileResponse, Http404
+import os
 
+
+def resume_view(request):
+    resume_path = os.path.join(settings.MEDIA_ROOT, 'resumes', 'Denis-Kurian-Deepu-CV.pdf')
+    if os.path.exists(resume_path):
+        return FileResponse(open(resume_path, 'rb'), content_type='application/pdf')
+    raise Http404("Resume not found.")
 emoji_map = {
     "AWS": "☁️",
     "Android": "🤖",
@@ -91,6 +99,11 @@ class HomeView(TemplateView):
         context['projects'] = Project.objects.all()
         context['certificates'] = Certificates.objects.all()
         context['skills'] = Skills.objects.all()
+        resume = Resume.objects.first()
+        if resume:
+            absolute_resume_url = self.request.build_absolute_uri(resume.file.url)
+            context['resume'] = resume
+            context['resume_url'] = absolute_resume_url
         context['emoji_map'] = emoji_map
         return context
 
@@ -105,4 +118,5 @@ class ProjectsView(TemplateView):
 
 class ContactView(TemplateView):
     template_name = "core/contact.html"
+
 
