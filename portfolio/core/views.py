@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from .models import Project, Certificates, Skills, Resume
 from django.conf import settings
 from django.http import FileResponse, Http404
+from django.views.generic import DetailView
 import os
 
 
@@ -107,6 +108,14 @@ class HomeView(TemplateView):
         context['emoji_map'] = emoji_map
         return context
 
+
+
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'core/project_detail.html'
+    context_object_name = 'project'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
 class AboutView(TemplateView):
     template_name = "core/about.html"
 
