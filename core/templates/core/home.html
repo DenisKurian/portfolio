@@ -8,7 +8,7 @@
 <!-- Hero Section -->
 <section id="home" class="py-5 min-vh-100 d-flex flex-column align-items-center justify-content-center text-center" data-bs-spy="scroll" data-bs-target="#navbar">
     <div class="image mb-4" data-aos="fade-up">
-        <img src="{{ MEDIA_URL }}Denis-profile.jpg" alt="Profile" class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+        <img src="/media/Denis-profile.jpg" alt="Profile" class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
     </div>
     <div>
         <h1 data-aos="fade-up">Denis Kurian Deepu</h1>
@@ -72,21 +72,20 @@ eager to utilize strong organizational skills to help the team achieve company o
 <section id="resume" class="py-5 container text-center">
   <h1 class="mb-4">My Resume</h1>
   <div class="resume-glass shadow-lg rounded-4 mx-auto" style="max-width: 900px;">
-  {% if resume %}
+  {% if resume.file.url %}
     <div class="embed-responsive" style="height: 90vh;">
     <iframe
-   src="/media/resumes/Denis-Kurian-Deepu-CV.pdf"
-  height="700px"
-  style="border: 1px solid #ccc;">
-</iframe>
+      src="{{ resume.file.url }}"
+      height="700px"
+      style="border: 1px solid #ccc;">
+    </iframe>
 
-  </div>
-    <div class="text-center mt-3">
-      <a href="/media/resumes/Denis-Kurian-Deepu-CV.pdf" class="resume-download-btn" download>
-        <i class="bi bi-download"></i> Download Resume
-      </a>
     </div>
-
+      <div class="text-center mt-3">
+        <a href="/media/resumes/Denis-Kurian-Deepu-CV.pdf" class="resume-download-btn" download>
+          <i class="bi bi-download"></i> Download Resume
+        </a>
+      </div>
   {% else %}
     <p>No resume uploaded yet.</p>
   {% endif %}
