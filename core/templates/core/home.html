@@ -174,7 +174,7 @@ eager to utilize strong organizational skills to help the team achieve company o
             {% endif %}
 
             <div class="card-body text-center">
-              <h5 class="card-title">{{ cerf.title }}</h5>
+              <h5 class="card-title">{{ cerf.title|truncatechars:26 }}</h5>
                <div>
             <a href="{{ cerf.file.url }}" class="btn btn-outline-primary mt-auto" target="_blank">
                 View Full

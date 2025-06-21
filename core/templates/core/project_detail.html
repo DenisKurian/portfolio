@@ -94,9 +94,15 @@
 <script>
   new Glide('.glide', {
     type: 'carousel',
-    perView: 3,
+    perView: 1,
     focusAt: 'center',
-    autoplay: 4000
+    gap: 0,
+    autoplay: 3000, // 3 seconds
+    hoverpause: true,
+    breakpoints: {
+      992: { perView: 2 },
+      768: { perView: 1 }
+    }
   }).mount();
 </script>
 {% endblock %}
